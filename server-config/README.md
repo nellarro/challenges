@@ -8,6 +8,23 @@ You'll need [Vagrant](https://www.vagrantup.com/) and [Ansible](https://docs.ans
 
 ### The task(s)
 
+This task is less about figuring out a specific application and more about configuring the server around an application.
+
+That being said, you have your choice of 2 applications that do the same thing: one written in php using composer.json, and another written in node.js with a package.json.
+
+They both follow standard best practices in terms of being a 12-factor application.
+
+
+### For both applications
+
+* nginx installed and configured
+* mysql installed and secured
+* elasticsearch installed and running
+
+
+The server should be available via challenge.local on your machine. Vagrant adds it into the host file
+
+#### For the php app:
 Your submission should demonstrate best practices in regards to building and deploying a standard php nginx appliation, installing some packages, and starting the application up. 
 
 The application has a few requirements
@@ -17,7 +34,9 @@ The application has a few requirements
 * elasticsearch installed and running
 * composer packages installed and running
 
-The server should be available via challenge.local on your machine in order to test
+#### For the nodejs app:
+
+* Please set up an upstream proxy from nginx to the node app.
 
 
 ### Tips & Guidance:
