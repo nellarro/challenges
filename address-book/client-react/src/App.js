@@ -5,9 +5,17 @@ import './App.css';
 class App extends Component {
   componentDidMount() {
     fetch('api/oddballs').then(resp => resp.json()).then(data => {
-      console.log(data)
+       this.setState({ contacts:data })
     })
   }
+
+  constructor() {
+    super() 
+      this.state = {
+        contacts: []
+      }
+  }
+
   render() {
     return (
       <div className="App">
@@ -15,7 +23,7 @@ class App extends Component {
             type="text"
             name="search"
           />
-          <ContactList />
+          <ContactList data={this.state.contacts} />
       </div>
     );
   }
@@ -23,12 +31,10 @@ class App extends Component {
 
 class ContactList extends Component {
   render(){
-    return [
-      <Contact />,
-      <Contact />,
-      <Contact />,
-      <Contact />
-    ]
+    const mappingFunc = data => {
+      return data.map(contact => <Contact contactInfo={contact} />)
+    }
+    return mappingFunc(this.props.data)
   }
 
 }
@@ -36,7 +42,7 @@ class ContactList extends Component {
 class Contact extends Component {
   render() {
     return(
-      <p>Contact</p>
+      <p>{this.props.contactInfo.firstName}</p>
     )
   }
 }
